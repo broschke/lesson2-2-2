@@ -6,19 +6,17 @@ loansData = pd.read_csv('https://github.com/Thinkful-Ed/curric-data-001-data-set
 
 loansData.dropna(inplace=True)
 
-data = [i.split(',') for i in loansData]
-column_names = data[0] # this is the first row
-data_rows = data[1::] # these are all the following rows of data
-df = pd.DataFrame(data_rows, columns=column_names)
+loansData.boxplot(column='Amount.Requested')
+plt.show()
 
-print(column_names)
+loansData.hist(column='Amount.Requested')
+plt.show()
 
-# df.boxplot(column='Amount.Requested')
-# plt.show()
+plt.figure()
+graph = stats.probplot(loansData['Amount.Requested'], dist="norm", plot=plt)
+plt.show()
 
-# df.hist(column='Amount.Funded.By.Investors')
-# plt.show()
 
-# plt.figure()
-# graph = stats.probplot(df['Amount.Funded.By.Investors'], dist="norm", plot=plt)
-# plt.show()
+'''
+Amount Requested data has a direct relationship with the amount founded data.
+'''
